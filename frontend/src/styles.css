@@ -1,0 +1,217 @@
+/* === GLOBAL RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f7f9ff;
+  color: #232323;
+  line-height: 1.5;
+}
+
+/* === PAGE LAYOUT === */
+.auth-layout {
+  display: grid;
+  grid-template-columns: 600px 1fr;
+  min-height: 100vh;
+  background: #f7f9ff;
+}
+
+/* === LEFT COLUMN === */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  padding: 64px;
+  background: #ffffff;
+  border-right: 1px solid #e6ecff;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.05);
+}
+
+/* === TOP SECTION (logo area) === */
+.top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #367AFF, #2563eb);
+}
+
+.logo .text {
+  font-weight: 700;
+  font-size: 24px;
+  color: #232323;
+}
+
+/* === CONTENT AREA === */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 400px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 1.2;
+  color: #232323;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 18px;
+  color: #6c6c6c;
+  margin-top: -8px;
+}
+
+/* === FORM === */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.form .field {
+  position: relative;
+  width: 100%;
+}
+
+.form .input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d6def8;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.form .input:focus {
+  border-color: #367AFF;
+  box-shadow: 0 0 0 3px rgba(54,122,255,0.2);
+  outline: none;
+}
+
+.form label {
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  background: #fff;
+  padding: 0 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6c6c6c;
+}
+.brand-text {
+  position: absolute;   /* Take it out of normal flow */
+  top: 20px;            /* Distance from the top */
+  left: 20px;           /* Distance from the left */
+  font-size: 28px;
+  font-weight: 700;
+  color: #367AFF;
+  font-family: 'Inter', sans-serif;
+  z-index: 1000;        /* Ensures it stays above background */
+}
+
+/* === OTP Input Special Case === */
+.form .input.otp {
+  border: 2px solid #367AFF;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 4px;
+  font-size: 18px;
+}
+
+/* === BUTTON === */
+.btn-primary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background: linear-gradient(135deg, #367AFF, #2563eb);
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(54,122,255,0.3);
+}
+
+/* === FOOTER TEXT === */
+.footer-text {
+  font-size: 14px;
+  text-align: center;
+  color: #6C6C6C;
+  margin-top: 20px;
+}
+
+/* === RIGHT IMAGE PANEL === */
+.right-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.right-panel-image {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/auth-hero.png') center center / cover no-repeat;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .auth-layout {
+    grid-template-columns: 1fr;
+  }
+  .right-panel {
+    display: none;
+  }
+  .left-column {
+    padding: 40px 24px;
+    max-width: 600px;
+    margin: 0 auto;
+    border-right: none;
+    box-shadow: none;
+  }
+  .logout {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff4d4f, #d9363e);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(217,54,62,0.3);
+  }
+
+  .logout:hover {
+    background: linear-gradient(135deg, #e33b3d, #b82c32);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(217,54,62,0.4);
+  }
+}
