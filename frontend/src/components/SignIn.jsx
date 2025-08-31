@@ -5,6 +5,7 @@ export default function SignIn({ onAuthed }) {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [sent, setSent] = useState(false);
+  const [showOtp, setShowOtp] = useState(false);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
 
@@ -52,7 +53,7 @@ export default function SignIn({ onAuthed }) {
         />
       </div>
 
-      {sent && (
+      {/* {sent && (
         <div className="field">
   <label className="floating">OTP</label>
   <input
@@ -62,12 +63,29 @@ export default function SignIn({ onAuthed }) {
     placeholder="OTP"
   />
 </div>
-      )}
+      )} */}
+      <div className={`field with-icon ${sent ? "otp-sent" : ""}`}>
+        <label className="floating">OTP</label>
+        <input
+          className={`input ${sent ? "otp" : ""}`}
+          value={otp}
+          onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+          placeholder="OTP"
+          type={showOtp ? "text" : "password"}
+          disabled={!sent}
+        />
+        <button
+          type="button"
+          className="icon-btn eye"
+          onClick={() => setShowOtp((s) => !s)}
+          aria-label={showOtp ? "Hide OTP" : "Show OTP"}
+          disabled={!sent}
+        />
 
-      <button className="btn-primary" type="submit" disabled={loading}>
+      <button className="btn-primary" type="submit" disabled={loading} style={{marginTop:4}}>
         {sent ? (loading ? "Verifying…" : "Sign in") : (loading ? "Sending…" : "Send OTP")}
       </button>
-
+        </div>
       {err && <p className="error">{err}</p>}
     </form>
   );

@@ -210,7 +210,7 @@ export default function AuthEmail({ onAuthed }) {
           aria-label={showOtp ? "Hide OTP" : "Show OTP"}
           disabled={!sent}
         />
-        {sent && (
+        {/* {sent && (
         <div className="field">
   <label className="floating">OTP</label>
   <input
@@ -220,16 +220,16 @@ export default function AuthEmail({ onAuthed }) {
     placeholder="OTP"
   />
 </div>
-      )}
+      )} */}
 
-      <button className="btn-primary" type="submit" disabled={loading}>
+      <button className="btn-primary" type="submit" disabled={loading} style={{marginTop:4}}>
         {sent ? (loading ? "Verifying…" : "Sign in") : (loading ? "Sending…" : "Send OTP")}
       </button>
 
       {err && <p className="error">{err}</p>}
       </div>
 
-      <button className="btn-primary" type="submit" disabled={loading}>
+      <button className="btn-primary" type="submit" disabled={loading} style={{marginTop:4}}>
         {sent ? (loading ? "Verifying…" : "Sign up") : (loading ? "Sending…" : "Sign up")}
       </button>
 
