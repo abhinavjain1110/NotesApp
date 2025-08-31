@@ -15,18 +15,14 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
-const allowedOrigins = (process.env.CLIENT_ORIGIN || "").split(",");
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (like mobile apps, curl, Postman)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: [
+      "https://notes-app-git-master-abhinavjain1110s-projects.vercel.app/",
+      "http://localhost:5173",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
