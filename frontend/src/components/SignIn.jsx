@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import api from "../Api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function SignIn({ onAuthed }) {
   const [email, setEmail] = useState("");
@@ -43,6 +45,7 @@ export default function SignIn({ onAuthed }) {
 
   return (
     <form className="form" onSubmit={sent ? handleVerify : handleSendOtp}>
+      {/* Email Field */}
       <div className="field">
         <label className="floating">Email</label>
         <input
@@ -53,39 +56,69 @@ export default function SignIn({ onAuthed }) {
         />
       </div>
 
-      {/* {sent && (
-        <div className="field">
-  <label className="floating">OTP</label>
-  <input
-    className="input otp"
-    value={otp}
-    onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-    placeholder="OTP"
-  />
-</div>
-      )} */}
+      {/* OTP Field (only active after sending) */}
       <div className={`field with-icon ${sent ? "otp-sent" : ""}`}>
         <label className="floating">OTP</label>
         <input
           className={`input ${sent ? "otp" : ""}`}
           value={otp}
           onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-          placeholder="OTP"
+          placeholder="6-digit OTP"
           type={showOtp ? "text" : "password"}
           disabled={!sent}
         />
-        <button
+        {/* <button
           type="button"
           className="icon-btn eye"
           onClick={() => setShowOtp((s) => !s)}
           aria-label={showOtp ? "Hide OTP" : "Show OTP"}
           disabled={!sent}
-        />
+        >
+          <FontAwesomeIcon icon={showOtp ? faEyeSlash : faEye} />
+        </button> */}
+      </div>
+      <style>
+        {`        .field.with-icon {
+          position: relative;
+        }
 
-      <button className="btn-primary" type="submit" disabled={loading} style={{marginTop:4}}>
-        {sent ? (loading ? "Verifying…" : "Sign in") : (loading ? "Sending…" : "Send OTP")}
+        .field.with-icon .input {
+          padding-right: 40px; /* space for eye icon */
+        }
+
+        .icon-btn.eye {
+          position: absolute;
+          right: 10px;
+          top: 55%;
+          transform: translateY(-50%);
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+          color: #666;
+        }
+
+        .icon-btn.eye:hover {
+          color: #000;
+        }`}
+
+      </style>
+      {/* Submit */}
+      <button
+        className="btn-primary"
+        type="submit"
+        disabled={loading}
+        style={{ marginTop: 8 }}
+      >
+        {sent
+          ? loading
+            ? "Verifying…"
+            : "Sign in"
+          : loading
+          ? "Sending…"
+          : "Send OTP"}
       </button>
-        </div>
+
       {err && <p className="error">{err}</p>}
     </form>
   );

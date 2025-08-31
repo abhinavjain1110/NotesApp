@@ -124,6 +124,31 @@ export default function App() {
       <button className="logout" onClick={logout}>
         Logout
       </button>
+      <style>
+      {`
+        .logout {
+          position: absolute;
+          top: 16px;
+          right: 20px;
+          background: linear-gradient(135deg, #ff4d4f, #d9363e);
+          border: none;
+          padding: 8px 16px;
+          border-radius: 8px;
+          color: #fff;
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 6px rgba(217,54,62,0.3);
+        }
+
+        .logout:hover {
+          background: linear-gradient(135deg, #e33b3d, #b82c32);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 8px rgba(217,54,62,0.4);
+        }
+      `}
+      </style>
       <Notes />
     </div>
   );
