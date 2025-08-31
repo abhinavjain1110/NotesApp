@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: [
-      "https://notes-app-git-master-abhinavjain1110s-projects.vercel.app/",
+      "https://notes-app-git-master-abhinavjain1110s-projects.vercel.app",
       "http://localhost:5173",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
