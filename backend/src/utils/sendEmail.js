@@ -15,7 +15,7 @@ auth: { user: SMTP_USER, pass: SMTP_PASS }
 });
 return transporter.sendMail({ from: EMAIL_FROM || SMTP_USER, to, subject, html });
 } */
-import nodemailer from "nodemailer";
+/* import nodemailer from "nodemailer";
 
 export async function sendEmail({ to, subject, html }) {
   const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, EMAIL_FROM } = process.env;
@@ -41,4 +41,46 @@ export async function sendEmail({ to, subject, html }) {
     subject,
     html,
   });
+} */
+// utils/sendEmail.js
+// src/utils/sendEmail.js
+// src/utils/sendEmail.js
+import axios from "axios";
+
+export async function sendEmail({ to, subject, html }) {
+  const { BREVO_API_KEY, EMAIL_FROM } = process.env;
+
+  if (!BREVO_API_KEY) {
+    console.log("\n[Email Mock] To:", to, "\nSubject:", subject, "\nHTML:\n", html, "\n");
+    return { mocked: true };
+  }
+
+  try {
+    const response = await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: { email: EMAIL_FROM },
+        to: [{ email: to }],
+        subject,
+        htmlContent: html,
+      },
+      {
+        headers: {
+          "api-key": BREVO_API_KEY,   // ✅ authentication
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log("✅ Email sent:", response.data);
+    return response.data;
+  } catch (err) {
+    console.error("❌ Brevo email error:", err.response?.data || err.message);
+    throw err;
+  }
 }
+
+
+
+
+
